@@ -1,0 +1,18 @@
+[Unit]
+ Description=Example .NET Web API App Backend running on Linux
+ 
+[Service]
+ WorkingDirectory=/var/www/Backend
+ ExecStart=/usr/bin/dotnet /var/www/Backend/Backend.dll
+ Restart=always
+ # Restart service after 10 seconds if the dotnet service crashes:
+ RestartSec=10
+ KillSignal=SIGINT
+ SyslogIdentifier=dotnet-example-Backend
+ User=www-data
+ Environment=ASPNETCORE_ENVIRONMENT=Production
+ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+ Environment=ASPNETCORE_URLS=http://0.0.0.0:5000
+ 
+ [Install]
+ WantedBy=multi-user.target
